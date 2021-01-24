@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
+#include "Protagonist.h"
 
 Enemy::Enemy(const char* enemType, int enemHealth, int enemDamage) 
 {
@@ -132,6 +133,28 @@ void Enemy::Draw()
 {
 	sprite->Draw(); 
 	enemyDeath->Draw(); 
+}
+
+void Enemy::EnemyFollow(Protagonist* player, uint8_t playerState)
+{
+	Vector2 playerPos;
+	player->GetSpritePosition(playerPos.x, playerPos.y);
+
+	Vector2 enemyPos;
+	this->GetSpritePosition(enemyPos.x, enemyPos.y);
+	float distanceX = playerPos.x - enemyPos.x;
+	float distanceY = playerPos.y - enemyPos.y;
+	float distance = sqrtf((distanceX * distanceX) + (distanceY * distanceY));
+
+	float vx, vy;
+	if (distance < 250.f && playerState == ALIVE)
+	{
+		//normalizing difference to receive unit vector for velocity, 50.f is the speed here
+		vx = (distanceX / distance) * 50.f;
+		vy = (distanceY / distance) * 50.f;
+		this->SetVelocity(vx, vy);
+	}
+
 }
 
 

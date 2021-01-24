@@ -1,13 +1,14 @@
 #include "stdafx.h"
+#include "SceneStateMachine.h"
+#include "Protagonist.h"
+#include "Bullet.h"
 #include "SceneGame.h"
 
 SceneGame::SceneGame(SceneStateMachine& sceneStateMachine) 
 	: sceneStateMachine(sceneStateMachine), activateCount(0),currLevel(1), numLevels(3), playerState(ALIVE), secPlayerDeath(0.f), secEnemiesDead(0.f)
 {
+	//create player
 	player = new Protagonist();
-
-	float x, y;
-	player->GetSpritePosition(x, y);
 
 	AddAsteriods(); 
 } 
@@ -21,14 +22,12 @@ void SceneGame::OnActivate()
 	}
 	
 	activateCount++; 
-	
 }
 
 void SceneGame::OnDestroy()
 {
-	player->OnDestroy(); //deletes player sprite and player explosion CSimpleSprite ptrs
+	player->OnDestroy(); 
 	delete player;
-
 }
 
 void SceneGame::SetSwitchToScene(unsigned int stateWon, unsigned int stateLost)
@@ -50,26 +49,6 @@ bool SceneGame::IsPointInsideRange(float x1, float y1, float x2, float y2)
 {
 	//If distance between points is less than 50.f, points are deemed inside each other's range 
 	return sqrtf((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) < 50.f;
-}
-
-void SceneGame::EnemyFollow(float enemPosX, float enemPosY, std::unique_ptr<Enemy>& currEnem)
-{
-	Vector2 playerPos; 
-	player->GetSpritePosition(playerPos.x, playerPos.y); 
-	
-	float distanceX = playerPos.x - enemPosX; 
-	float distanceY = playerPos.y - enemPosY; 
-	float distance = sqrtf((distanceX * distanceX) + (distanceY * distanceY)); 
-
-	float vx, vy;
-	if (distance < 250.f && playerState == ALIVE)
-	{
-		//normalizing difference to receive unit vector for velocity, 50.f is the speed here
-		vx = (distanceX / distance) * 50.f; 
-		vy = (distanceY / distance) * 50.f; 
-		currEnem->SetVelocity(vx, vy);
-	}
-
 }
 
 void SceneGame::ResetGame()
@@ -165,8 +144,8 @@ void SceneGame::CreateLevelThree()
 	for (int i = 0; i < 2; i++)
 	{
 		enemies.push_back(std::make_unique<Enemy>("small enemy", 40, 100));
-		enemies.push_back(std::make_unique<Enemy>("medium enemy", 60, 200));
-		enemies.push_back(std::make_unique<Enemy>("large enemy", 80, 200));
+		enemies.push_back(std::make_unique<Enemy>("medium enemy", 60, 100));
+		enemies.push_back(std::make_unique<Enemy>("large enemy", 80, 100));
 	}
 
 	currLevel += 1;
@@ -248,7 +227,7 @@ void SceneGame::Update(float deltaTime)
 
 		}
 
-		if (e->GetSmartEnemy()) EnemyFollow(ex, ey, e); //if smart enemy, allow enemy to follow player inside range
+		if (e->GetSmartEnemy()) e->EnemyFollow(player, playerState); 
 
 
 		//Check for enemy collisons with player

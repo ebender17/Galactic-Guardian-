@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------
+// Starting Screen Scene
+//------------------------------------------------------------------------
 #pragma once
 
 #include "SceneStateMachine.h"
@@ -18,7 +21,6 @@ public:
 private:
     SceneStateMachine& sceneStateMachine;
     unsigned int switchToState; // The state we want to transition to when desired.
-
     float currentSeconds; //secs since scene was created
 };
 

@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------
+// Scene to displays when player wins. 
+//------------------------------------------------------------------------
 #pragma once
 #include "SceneStateMachine.h"
 #include "App/app.h"

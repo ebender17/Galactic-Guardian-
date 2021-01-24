@@ -1,8 +1,10 @@
+//------------------------------------------------------------------------
+// Interface for all game objects. 
+//------------------------------------------------------------------------
 #pragma once
 
 #include "App/app.h"
 
-//Abstract class (interface) 
 class GameObject
 {
 protected:
@@ -26,7 +28,25 @@ public:
 	virtual void OnDestroy() {};
 	virtual void Update(float deltaTime) {};
 	virtual void Draw() {};
+
+	/*
+   * Wraps player's coordinates around screen ensuring player never goes off screen.
+   * @param x	player's current x coordinate
+   * @param y	player's current y coordinate
+   * @param ox	output with player's new x coordinate
+   * @param oy	output with player's new y coordinate
+   */
+	void WrapCoordinates(float x, float y, float& ox, float& oy)
+	{
+		ox = x;
+		oy = y;
+		if (x < -10.f) ox = x + (float)APP_INIT_WINDOW_WIDTH;
+		if (x >= (float)APP_INIT_WINDOW_WIDTH + 10.f) ox = x - (float)APP_INIT_WINDOW_WIDTH;
+		if (y < -50.f) oy = y + (float)APP_INIT_WINDOW_HEIGHT;
+		if (y >= (float)APP_INIT_WINDOW_HEIGHT + 10.f) oy = y - (float)APP_INIT_WINDOW_HEIGHT;
+	};
 	
+	//Following are Getters and Setters for Game Object members. 
 	float GetObjectHurt()
 	{
 		return secObjectHurt;
@@ -90,18 +110,6 @@ public:
 	{
 		sprite->SetAngle(a); 
 	}
-
-	//Wraps coordinates of objects around the screen when they go off 
-	void WrapCoordinates(float x, float y, float& ox, float& oy) 
-	{
-		ox = x;
-		oy = y;
-		if (x < -10.f) ox = x + (float)APP_INIT_WINDOW_WIDTH;
-		if (x >= (float)APP_INIT_WINDOW_WIDTH + 10.f) ox = x - (float)APP_INIT_WINDOW_WIDTH;
-		if (y < -50.f) oy = y + (float)APP_INIT_WINDOW_HEIGHT;
-		if (y >= (float)APP_INIT_WINDOW_HEIGHT + 10.f) oy = y - (float)APP_INIT_WINDOW_HEIGHT;
-	};
-
 
 };
 

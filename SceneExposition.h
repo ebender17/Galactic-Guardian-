@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------
+// Scene for explaining game exposition. 
+//------------------------------------------------------------------------
 #pragma once
 
 #include "SceneStateMachine.h"
@@ -20,8 +23,8 @@ private:
     SceneStateMachine& sceneStateMachine;
     unsigned int switchToState; 
 
-    float continueSeconds; //Seconds since key was pressed to continue dialogue 
-    std::vector<const char*> openingDialogue; //stores c strings for scene's dialogue
+    float continueSeconds; //Seconds since key was pressed. Used to advance dialogue at readable pace.  
+    std::vector<const char*> openingDialogue; //Stores text for scene's dialogue. 
     int dialogueIndex; 
     int dialogueCounter; 
 };

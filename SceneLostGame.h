@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------
+// Scene to display when player looses. 
+//------------------------------------------------------------------------
 #pragma once
 #include "SceneStateMachine.h"
 #include "app\app.h"
@@ -16,7 +19,6 @@ public:
 private:
     SceneStateMachine& sceneStateMachine;
     unsigned int switchToState; 
-
     float currentSeconds; 
 };
 

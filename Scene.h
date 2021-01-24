@@ -1,16 +1,24 @@
+//------------------------------------------------------------------------
+// Interface for game scenes. 
+//------------------------------------------------------------------------
 #pragma once
 class Scene
 {
 public:
-    virtual void OnCreate() {}; // Called by FMS when scene initially created. Called once per scene. 
-    virtual void OnDestroy() {}; // Called by FMS when scene destroyed. Called once per scene.
+    // Called by FMS when scene initially created. Called once per scene. 
+    virtual void OnCreate() {}; 
+    // Called by FMS when scene destroyed. Called once per scene.
+    virtual void OnDestroy() {}; 
 
-    virtual void OnActivate() {}; // Called whenever a scene is switched into by FMS.
-    virtual void OnDeactivate() {}; // Called whenever a scene is switch out off by FMS.
+    // Called whenever a scene is switched into by FMS.
+    virtual void OnActivate() {}; 
+    // Called whenever a scene is switch out off by FMS.
+    virtual void OnDeactivate() {}; 
 
-
-    //Made pure virtual functions so subclass must instantiate
-    //These functions need to be called to update and render objects to screen 
+    /*
+    * Update and Draw made pure virtual functions to ensure every scene implements. 
+    * These functions need to be called to update and render objects to screen.
+    */
     virtual void Update(float deltaTime) = 0; 
     virtual void Draw() = 0;
 

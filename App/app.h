@@ -20,6 +20,13 @@ struct Vector2
 	float x, y; 
 };
 
+//Player State ids
+enum PlayerState {
+	ALIVE,
+	HURT,
+	DEAD
+};
+
 //Animation ids
 enum {
 		ANIM_FLYING,

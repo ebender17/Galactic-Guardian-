@@ -1,8 +1,13 @@
+//------------------------------------------------------------------------
+// Enemy Character 
+//------------------------------------------------------------------------
 #pragma once
 #include "GameObject.h"
 #include <unordered_map>
 #include <vector>
 #include <random>
+
+class Protagonist;
 
 class Enemy : public GameObject
 {
@@ -19,6 +24,8 @@ public:
 	{
 		return spriteEnemy.smartEnemy; 
 	}
+
+	void EnemyFollow(Protagonist* player, uint8_t playerState);
 
 private: 
 	bool enemyRotation = false; //Sets to true if enemy should rotate 

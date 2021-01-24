@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-// GameTest.cpp
+// Game.cpp
 //------------------------------------------------------------------------
 #include "stdafx.h"
 //------------------------------------------------------------------------
@@ -8,7 +8,10 @@
 //------------------------------------------------------------------------
 #include "app\app.h"
 //------------------------------------------------------------------------
-//Finite State Machine (FMS) and game scenes
+
+//------------------------------------------------------------------------
+// Finite State Machine includes
+//------------------------------------------------------------------------
 #include "SceneStateMachine.h"
 #include "SceneMainMenu.h"
 #include "SceneExposition.h"
@@ -16,9 +19,8 @@
 #include "SceneLostGame.h"
 #include "SceneEndScreen.h"
 
-//Creating sceneStateMachine object which controls the active scene
-//and handles transitions to and from scenes 
 SceneStateMachine sceneStateMachine;
+
 unsigned int mainMenuID; 
 unsigned int expoSceneID;
 unsigned int gameSceneID; 
@@ -30,6 +32,7 @@ unsigned int endSceneID;
 //------------------------------------------------------------------------
 void Init()
 {
+	//Create game scenes 
 	std::shared_ptr<SceneMainMenu> mainMenuScreen = std::make_shared<SceneMainMenu>(sceneStateMachine);
 
 	std::shared_ptr<SceneExposition> expoScene = std::make_shared<SceneExposition>(sceneStateMachine);
@@ -40,12 +43,14 @@ void Init()
 
 	std::shared_ptr<SceneEndScreen> endScene = std::make_shared<SceneEndScreen>(); 
 
+	//Add scenes to Scene State Machine
 	mainMenuID = sceneStateMachine.Add(mainMenuScreen);
 	expoSceneID = sceneStateMachine.Add(expoScene); 
 	gameSceneID = sceneStateMachine.Add(gameScene);
 	lostGameSceneID = sceneStateMachine.Add(lostGameScene); 
 	endSceneID = sceneStateMachine.Add(endScene); 
 
+	//Set scenes to switch to for each scene
 	mainMenuScreen->SetSwitchToScene(expoSceneID);
 	expoScene->SetSwitchToScene(gameSceneID);
 	gameScene->SetSwitchToScene(endSceneID, lostGameSceneID); 
@@ -62,7 +67,7 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
-	//Converting deltaTime to seconds 
+	//Converting deltaTime to seconds to make calculations easier
 	deltaTime /= 1000.f; 
 	sceneStateMachine.Update(deltaTime); 
 	

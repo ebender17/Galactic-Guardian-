@@ -1,44 +1,52 @@
+//------------------------------------------------------------------------
+// Scene for main Gameplay.
+//------------------------------------------------------------------------
 #pragma once
 
 #include "App/app.h"
-#include "SceneStateMachine.h"
-#include "Protagonist.h"
 #include "Enemy.h"
-#include "Bullet.h"
 #include <vector>
+
+class SceneStateMachine; 
+class Protagonist; 
+class Bullet; 
 
 class SceneGame : public Scene
 {
 public:
     SceneGame(SceneStateMachine& sceneStateMachine);
 
+    //Resets scene if scene has been activated before. 
     void OnActivate() override;
+    //Deletes heap allocated objects when scene is removed from state machine. 
     void OnDestroy() override;
     void Update(float deltaTime) override;
     void Draw() override; 
     void ResetGame(); 
+
+    /*
+   * Calculates velocity of player.
+   * @param stateWon    id of scene to switch to when player wins
+   * @param stateLost   id of scene to switch to when player dies 
+   */
     void SetSwitchToScene(unsigned int stateWon, unsigned int stateLost);
 
     void AddAsteriods(); 
 
-    //Used to calculate bullet and enemy and enemy and player collisions
+    //Used to calculate collisions
     bool IsPointInsideRange(float x1, float y1, float x2, float y2); 
 
-    //Sets player state if enemy collision occurred 
+    /*
+   * Sets player state if enemy collision occurred 
+   * @param enemPosX    enemy's x corrdinate
+   * @param enemPosY    enemy's y coordinate
+   * @param currEnem    enemy to check if it is close to player 
+   */
     void CalculatePlayerState(float enemPosX, float enemPosY, std::unique_ptr<Enemy>& currEnem); 
 
-    //Generates enemies and resets stats for levels
+    //Thw following generates enemies and resets stats for levels
     void CreateLevelTwo(); 
     void CreateLevelThree(); 
-
-    //Allows smart enemy to follow player within range
-    void EnemyFollow(float enemPosX, float enemPoxY, std::unique_ptr<Enemy>& currEnem); 
-
-    enum PlayerState {
-        ALIVE, 
-        HURT, 
-        DEAD
-    };
 
 private:
     SceneStateMachine& sceneStateMachine;
@@ -52,8 +60,8 @@ private:
 
     Protagonist* player; //player's character
     std::vector<std::unique_ptr<Enemy>> enemies; 
-    unsigned int playerState;
-    unsigned int currLevel; //current level
-    unsigned int numLevels; //number of game levels
+    uint8_t playerState;
+    uint8_t currLevel; //current level within SceneGame
+    uint8_t numLevels; //number of levels within SceneGame
 };
 
