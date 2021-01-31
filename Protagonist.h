@@ -5,8 +5,6 @@
 
 #include "GameObject.h"
 #include "Bullet.h"
-#include <algorithm>
-#include <memory>
 
 class Protagonist : public GameObject
 {

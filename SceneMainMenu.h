@@ -5,8 +5,6 @@
 
 #include "SceneStateMachine.h"
 #include "app\app.h"
-#include <cstdlib>
-#include <ctime>
 
 class SceneMainMenu: public Scene
 {

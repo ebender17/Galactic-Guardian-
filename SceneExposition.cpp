@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SceneExposition.h"
+
 SceneExposition::SceneExposition(SceneStateMachine& sceneStateMachine)
     : sceneStateMachine(sceneStateMachine), continueSeconds(0.f), dialogueCounter(1), dialogueIndex(0)
 {
@@ -55,6 +56,6 @@ void SceneExposition::Draw()
 		continueSeconds = 0.f; 
 	}
 
-	App::Print(20.f, 150.f, "Press the SPACE key or A button to continue.", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
+	App::Print(20.f, 150.f, "Continue with Space on Keyboard and A on Controller", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
 
 }

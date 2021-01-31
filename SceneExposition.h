@@ -5,7 +5,6 @@
 
 #include "SceneStateMachine.h"
 #include "app\app.h"
-#include <vector>
 
 class SceneExposition : public Scene 
 {

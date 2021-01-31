@@ -5,7 +5,6 @@
 
 #include "App/app.h"
 #include "Enemy.h"
-#include <vector>
 
 class SceneStateMachine; 
 class Protagonist; 

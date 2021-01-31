@@ -4,7 +4,6 @@
 #pragma once
 #include "SceneStateMachine.h"
 #include "app\app.h"
-#include <vector>
 
 class SceneLostGame : public Scene
 {

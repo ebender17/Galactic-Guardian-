@@ -26,8 +26,10 @@ void SceneMainMenu::Update(float deltaTime)
 void SceneMainMenu::Draw()
 {
 
-	App::Print(APP_INIT_WINDOW_WIDTH / 2.5f, APP_INIT_WINDOW_HEIGHT / 1.5f, "Welcome to Galactic Guardian", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
+	App::Print(APP_INIT_WINDOW_WIDTH / 2.55f, APP_INIT_WINDOW_HEIGHT / 1.5f, "Welcome to Galactic Guardian", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
 
-	App::Print(APP_INIT_WINDOW_WIDTH / 2.5f, APP_INIT_WINDOW_HEIGHT / 2.f, "Press Space or A to start", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
+	App::Print(APP_INIT_WINDOW_WIDTH / 2.6f, APP_INIT_WINDOW_HEIGHT / 2.f, "Continue with Space on Keyboard", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
+
+    App::Print(APP_INIT_WINDOW_WIDTH / 2.6f, APP_INIT_WINDOW_HEIGHT / 2.5f, "Continue with A on Controller", 0.2f, 0.5f, 0.75f, GLUT_BITMAP_9_BY_15);
 
 }

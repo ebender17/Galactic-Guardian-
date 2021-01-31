@@ -11,5 +11,12 @@
 #include <tchar.h>
 
 
+#include <memory>
+#include <algorithm>
 
-// TODO: reference additional headers your program requires here
+#include <unordered_map>
+#include <vector>
+
+#include <ctime>
+#include <cstdlib>
+#include <random>

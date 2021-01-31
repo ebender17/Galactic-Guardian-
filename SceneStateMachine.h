@@ -2,8 +2,6 @@
 // Simple Finite State Machine
 //------------------------------------------------------------------------
 #pragma once
-#include <memory>
-#include <unordered_map>
 #include "Scene.h"
 
 class SceneStateMachine
