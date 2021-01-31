@@ -1,6 +1,8 @@
 ========================================================================
     CONSOLE APPLICATION : Galactic Guardian Overview
 ========================================================================
+CURRENTLY REFRACTORING WHEN TIME IS AVAILABLE
+
 Theme & Objective: Galactic Guardian is a top-down space shooter. 
 The player is a single spaceship who has been tasked with defending the galaxy. 
 To clear each level, one must clear the galaxy crowded with dangerous objects and enemies. 
