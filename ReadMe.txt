@@ -3,6 +3,15 @@
 ========================================================================
 CURRENTLY REFRACTORING WHEN TIME IS AVAILABLE
 
+General Description: Top-down space shooter console application built with C/C++ during a weekend competition. 
+A simple API was provided by contest holders for contestants that allowed one to print text, render sprites, etc. 
+
+========================================================================
+
+The following is information about the game built for the competition. 
+
+========================================================================
+
 Theme & Objective: Galactic Guardian is a top-down space shooter. 
 The player is a single spaceship who has been tasked with defending the galaxy. 
 To clear each level, one must clear the galaxy crowded with dangerous objects and enemies. 
@@ -29,7 +38,7 @@ Files:
 •	Bullet: bullet object the protagonist (player) fires 
 •	Protagonist: the player’s character
 
-
+Game art by Luis Zuno, @ansimuz on Twitter
 
 /////////////////////////////////////////////////////////////////////////////
 
